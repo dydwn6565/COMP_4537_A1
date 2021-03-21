@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet" href="admin.css">
+    <style>
+        #text1,
+        #text2 {
+            width: "200px";
+            height: "25px";
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Question List</h2>
+    <!-- <span id="questionNum"></span><span id="question"></span> -->
+    <div id="questionList">no response yet!</div>
+
+    <div id="demo">1</div>
+
+    <h1>Question</h1>
+    <textarea rows="10" cols="50" id="contentOfTextarea"></textarea>
+    <!-- <br /> -->
+    <div id="container">
+        <input type="radio" id=radio1 name="radio"></input><input type="input" id="text1">
+        <br />
+        <input type="radio" id=radio2 name="radio"></input><input type="input" id="text2">
+        <br />
+    </div>
+    </div>
+    <div>
+        <input type="button" value="get" onclick="getAll()" id="addButton">
+        <button id="save" onclick="post()">save</button>
+        <button id="delete" onclick="deleteQuestion()">delete</button>
+        <button id="checkValues" onclick="values()">update</button>
+
+        <button id="addChoice" onclick="addChoice()">AddChoice</button>
+
+    </div>
+    <h3>Please type the number of question in the question list</h3>
+    <div>
+
+        <input type="input" id="updateText">
+        <button id="updateButton" onclick="updateValue()">select</button>
+    </div>
+    <div id="updateQuestion">
+
+    </div>
+
+    <div id="updateButtons">
+
+    </div>
+    </div>
+    <script src="admin.js"></script>
+    <script>
+
+
+
+    </script>
+
+</body>
+
+</html>
