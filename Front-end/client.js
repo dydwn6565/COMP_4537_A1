@@ -53,6 +53,8 @@ if (counter > 0) {
     }
     counterNum++;
   }
+} else {
+  checkNoElement();
 }
 
 function getAll() {
@@ -99,9 +101,7 @@ function getChoice() {
 }
 
 function checkNoElement() {
-  if (localStorage.length == 0) {
-    alert("There is no questions");
-  }
+  alert("There is no questions");
 }
 
 function checkNoItems() {

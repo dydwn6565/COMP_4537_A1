@@ -24,3 +24,9 @@
   background-color: rgb(255, 195, 127);
   font-weight: bold;
 }
+
+#text1,
+#text2 {
+  width: "200px";
+  height: "25px";
+}

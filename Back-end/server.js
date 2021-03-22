@@ -151,7 +151,7 @@ app.put("/questions/", (req, res) => {
               throw error;
             }
             choiceId = result[0]["choiceId"];
-
+            console.log(choiceId);
             connection.query(
               `update question set question = "${splitedBody[1]}" where questionId =${splitedBody[0]}`,
               (err, result) => {

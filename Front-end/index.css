@@ -1,0 +1,20 @@
+a{
+    text-decoration:none;
+    display: inline-block;
+    padding: 8px 16px;
+}
+.admin , .user{
+    background-color:#4cAF50;
+    color:white;
+   
+}
+
+#center {
+    position: absolute;;
+    top: 50%;
+    left:50%;
+    margin-top:-50px;
+    margin-left:-50px;
+    width:100px;
+    height:100px;
+}

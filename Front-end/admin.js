@@ -71,12 +71,12 @@ function post() {
   console.log(multipleChoice);
   console.log(parameter);
   // console.log(params);
+  window.location.reload();
   xhttp.open("POST", endPointRoot + resource, true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send(parameter + multipleChoice);
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      // document.getElementById("demo").innerHTML = this.responseText;
     }
   };
 }
@@ -119,18 +119,6 @@ function getChoice() {
   };
 }
 function createUpdateButtons(countChoices) {
-  let updateAddButton = document.createElement("input");
-  updateAddButton.onclick = addUpdateChoice;
-  updateAddButton.type = "button";
-  updateAddButton.value = "add";
-  updateButtons.appendChild(updateAddButton);
-
-  let deleteAddButton = document.createElement("input");
-  deleteAddButton.onclick = deleteUpdateChoice;
-  deleteAddButton.type = "button";
-  deleteAddButton.value = "delete";
-  updateButtons.appendChild(deleteAddButton);
-
   let updateButton = document.createElement("input");
   updateButton.onclick = UpdateChoice;
   updateButton.type = "button";
@@ -209,7 +197,9 @@ function updateValue() {
   let retrivedChoice = JSON.parse(ChoicJSON);
   for (let i = 0; i < (retrivedChoice.length - 1) / 10; i++) {
     console.log(retrivedChoice[4].split(":")[1].split(",")[0]);
-    if (retrivedChoice[4].split(":")[1].split(",")[0] == updateText) {
+    // console.log(updateText);
+    console.log("line 213" + retrivedChoice[4].split(":")[1].split(",")[0]);
+    if (retrivedChoice[4 + i * 10].split(":")[1].split(",")[0] == updateText) {
       countChoice++;
     }
   }
@@ -223,10 +213,8 @@ function updateValue() {
   let textbox = document.createElement("input");
   textbox.type = "text";
   textbox.id = "textareaU";
-  // console.log(retrivedChoice);
-  textbox.value = retrivedQuestion[(updateText - 1) * 2]
-    .split(":")[2]
-    .split(`"`)[1];
+  console.log(updateText);
+  textbox.value = retrivedQuestion[updateText - 1].split(":")[2].split(`"`)[1];
 
   textbox.style.width = "200px";
   textbox.style.height = "20px";
@@ -253,10 +241,27 @@ function updateValue() {
     textbox.type = "text";
     textbox.id = "textU" + j;
 
-    textbox.value = retrivedChoice[7 + (j - 1) * 10];
-    console.log(retrivedChoice[7 + (j - 1) * 10]);
+    console.log(updateText);
+    let startingPoint = checkStartPoint(updateText);
+    console.log("line 235" + startingPoint);
+    textbox.value = retrivedChoice[7 + startingPoint * 10 + j * 10];
+    console.log(retrivedChoice[7 + startingPoint * 10 + j * 10]);
     updateQuestion.appendChild(textbox);
     updateQuestion.appendChild(newlines);
   }
   createUpdateButtons(countChoice);
+}
+
+function checkStartPoint(userInput) {
+  var ChoicJSON = localStorage.getItem("totalChoice");
+  let retrivedQuestion = JSON.parse(ChoicJSON);
+  let stringPoint = 0;
+  for (let i = 0; i < (retrivedQuestion.length - 1) / 10; i++) {
+    if (retrivedQuestion[4 + 10 * i].split(":")[1].split(",")[0] < userInput) {
+      stringPoint++;
+    }
+  }
+  console.log(retrivedQuestion[4].split(":")[1].split(",")[0]);
+  console.log(stringPoint);
+  return stringPoint;
 }
